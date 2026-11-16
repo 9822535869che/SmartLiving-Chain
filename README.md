@@ -1,4 +1,4 @@
-# SmartLiving-Chain
+ใช้ในโฟเดอนะครับ ไฟกระจาย# SmartLiving-Chain
 <img width="1341" height="1019" alt="image" src="https://github.com/user-attachments/assets/b71e92a8-a92c-4fbd-94b0-0f5ecbb2f9bc" />
 อันนี้คือหน้าเเรกของเว็บครับ
 เริ่มต้น เป็น เเอดมินเว็บ จัดการ โร ต่าง ๆ (บทบาท) 
