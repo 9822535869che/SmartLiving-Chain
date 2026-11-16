@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartLiving Chain · ระบบบริหารสัญญาเช่าบนบล็อกเชน</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<aside>
+  <div class="logo">
+    <svg class="house" viewBox="0 0 72 60" aria-hidden="true"><path d="M8 26 L36 6 L64 26" fill="none" stroke="#3B82F6" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M14 26 V54 H58 V26" fill="none" stroke="#3B82F6" stroke-width="5" stroke-linejoin="round"/><circle cx="34" cy="34" r="5.5" fill="none" stroke="#3B82F6" stroke-width="4"/><path d="M40 37 L52 46" stroke="#3B82F6" stroke-width="4" stroke-linecap="round"/></svg>
+    <b>SmartLiving Chain</b><small>Smart Rental Contract</small>
+  </div>
+  <nav id="nav"></nav>
+  <div class="art"><img src="assets/hero-v3.svg" alt=""></div>
+  <div class="sep"></div>
+  <div class="wallet">
+    <div class="t">เชื่อมต่อ Wallet</div>
+    <div class="c" id="wstat">○ ยังไม่เชื่อมต่อ MetaMask</div>
+    <div class="a"><span id="wallet"></span><span aria-hidden="true">⧉</span></div>
+    <button class="mm-btn" id="mm-btn" onclick="mmToggle()">เชื่อมต่อ MetaMask</button>
+    <div class="roles" role="group" aria-label="เลือกบทบาท">
+      <button data-role="landlord" class="on">เจ้าของทรัพย์สิน</button>
+      <button data-role="tenant">ผู้เช่า</button>
+      <button data-role="admin">ผู้จัดการข้อพิพาท</button>
+      <button data-role="super">ผู้ดูแลระบบ</button>
+    </div>
+  </div>
+</aside>
+
+<main>
+  <div class="top">
+    <div class="eth" style="margin-left:auto"><span class="d">Ξ</span><span id="ethbal">0.0000 ETH</span><span style="color:#6B7396;font-size:12px">▼</span></div>
+    <div class="vsep"></div>
+    <div class="user"><div class="av" id="avt">MT</div><span id="rolename">Methaporn</span><span style="color:#6B7396;font-size:12px">▼</span></div>
+    <div class="bell" aria-label="การแจ้งเตือน"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10.3 20a2 2 0 0 0 3.4 0"/></svg><b id="bellcount">2</b></div>
+  </div>
+
+  <section class="hero">
+    <div class="pic"></div>
+    <div class="txt">
+      <h1>ระบบบริหารสัญญาเช่า<br><span>บนบล็อกเชน</span></h1>
+      <p>โปร่งใส ปลอดภัย ตรวจสอบได้ทุกขั้นตอน</p>
+      <button class="btn" onclick="go('props')">เริ่มใช้งาน →</button>
+    </div>
+  </section>
+
+
+  <section class="stats" id="stats"></section>
+
+  <!-- หน้าหลัก -->
+  <div class="pg on" id="pg-home">
+    <div class="row1">
+      <div class="card">
+        <div class="hd"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V8l8-4 8 4v13"/><path d="M9 21v-6h6v6"/></svg></span><h2>ทรัพย์สินของฉัน</h2><button class="more" onclick="go('props')">ดูทั้งหมด →</button></div><div class="hd-line"></div>
+        <div class="prop" id="propcard"></div>
+      </div>
+      <div class="card dark" id="lastcard"></div>
+    </div>
+    <div class="row2">
+      <div class="card">
+        <div class="hd"><span class="ico"><svg viewBox="0 0 24 24"><path d="M7 4 3 8l4 4"/><path d="M3 8h14"/><path d="m17 20 4-4-4-4"/><path d="M21 16H7"/></svg></span><h2>รายการธุรกรรมล่าสุด</h2><button class="more" onclick="go('report')">ดูทั้งหมด →</button></div>
+        <div class="tx" id="txlist"></div>
+      </div>
+      <div class="card warn">
+        <div class="hd"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 2 14h6z"/><path d="M19 7l-3 7h6z"/></svg></span><h2 id="warn-h">จัดการข้อพิพาท</h2></div>
+        <p class="alert-txt" id="warn-txt" style="max-width:58%;margin:0 0 18px">มีข้อพิพาทเกี่ยวกับความเสียหาย? ให้ผู้มีอำนาจพิจารณาก่อนปล่อยเงิน</p>
+        <button class="btn" id="warn-btn" onclick="go('dispute')">เข้าสู่ระบบจัดการข้อพิพาท →</button>
+        <div class="gavel"><img src="assets/photo-v3.svg" alt=""></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ที่พัก -->
+  <div class="pg" id="pg-stay"></div>
+  <div class="pg" id="pg-room"></div>
+  <div class="pg" id="pg-confirm"></div>
+  <div class="pg" id="pg-access"></div>
+  <div class="pg" id="pg-guest"></div>
+
+  <!-- ทรัพย์สิน -->
+  <div class="pg" id="pg-props">
+    <div class="card sec">
+      <div class="hd"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V8l8-4 8 4v13"/></svg></span><h2>ลงทะเบียนทรัพย์สินใหม่</h2><button class="btn ghost sm" onclick="closePropForm()">‹ กลับไปรายการ</button></div>
+      <div class="note" id="n-props" style="margin-top:0"></div>
+      <div class="fields" style="margin-top:12px">
+        <label>ชื่อหรือรหัสห้อง<input id="p-name" placeholder="เช่น B-112 · รัชดาภิเษก"></label>
+        <label>ที่อยู่<input id="p-addr" value="กรุงเทพมหานคร"></label>
+        <label>พื้นที่ (ตร.ม.)<input id="p-area" type="number" value="30"></label>
+        <label>ห้องนอน<select id="p-bed"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label>
+        <label>ห้องน้ำ<select id="p-bath"><option value="1">1</option><option value="2">2</option></select></label>
+        <label>ค่าเช่า (ETH/เดือน)<input id="p-rent" type="number" step="0.001" value="0.012"></label>
+        <label>เงินประกัน (ETH)<input id="p-dep" type="number" step="0.001" value="0.05"></label>
+        <label>สถานะการให้เช่า<select id="p-listed"><option value="1">เปิดให้เช่า</option><option value="0">ปิดให้เช่าชั่วคราว</option></select></label>
+      </div>
+      <label style="margin-top:14px">รายละเอียดเพิ่มเติม<textarea id="p-desc" rows="3" placeholder="เช่น ชั้น 12 วิวสวน เฟอร์นิเจอร์ครบ"></textarea></label>
+      <div style="margin-top:14px;display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div id="p-preview" style="width:180px;height:120px;border-radius:14px;background:#EEF2FA url('assets/photo-v3.svg') center/cover no-repeat;border:1px solid #E6EAF5"></div>
+        <label style="margin:0;flex:1;min-width:220px">รูปภาพห้อง (เลือกได้สูงสุด 6 รูป ไม่บังคับ)<input id="p-img" type="file" accept="image/*" multiple onchange="onPhoto(this)"></label><span id="p-photocount" class="mini" style="display:block;margin-top:6px"></span>
+      </div>
+      <div style="margin-top:16px"><button class="btn" id="b-props" onclick="addProp()">บันทึกทรัพย์สิน</button><button class="btn ghost" id="b-cancel" style="display:none;margin-left:8px" onclick="resetPropForm()">ยกเลิกการแก้ไข</button></div>
+    </div>
+    <div class="card sec" style="margin-top:18px">
+      <div class="hd"><h2>รายการทรัพย์สินทั้งหมด</h2><button class="btn blue sm" onclick="newProp()">+ สร้างทรัพย์สิน</button></div>
+      <div id="proptbody" class="pgrid"></div>
+    </div>
+  </div>
+
+  <!-- สัญญา -->
+  <div class="pg" id="pg-agr">
+    <div id="agr-reqs"></div>
+    <div class="card sec" id="agr-create">
+      <div class="hd"><span class="ico"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span><h2>สร้างสัญญาเช่าใหม่</h2></div>
+      <div class="note" id="n-agr" style="margin-top:0"></div>
+      <div class="fields" style="margin-top:12px">
+        <label>ทรัพย์สิน<select id="a-prop"></select></label>
+        <label>Wallet ผู้เช่า<input id="a-tenant" placeholder="0x..."></label>
+        <label>วันเริ่มต้น<input id="a-start" type="date" value="2026-12-01"></label>
+        <label>วันสิ้นสุด<input id="a-end" type="date" value="2027-11-30"></label>
+      </div>
+      <label style="margin-top:14px">เงื่อนไขสำคัญ<textarea id="a-terms" rows="2">ผู้เช่าแจ้งล่วงหน้า 30 วันก่อนย้ายออก ค่าเสียหายหักจากเงินประกันตามที่อนุมัติร่วมกัน</textarea></label>
+      <div style="margin-top:16px"><button class="btn" id="b-agr" onclick="createAgr()">สร้างและส่งให้ผู้เช่าลงนาม</button></div>
+    </div>
+    <div id="agr-detail"></div>
+  </div>
+
+  <!-- ธุรกรรม -->
+  <div class="pg" id="pg-tx">
+    <div id="tx-body"></div>
+  </div>
+
+  <!-- ข้อพิพาท -->
+  <div class="pg" id="pg-dispute">
+    <div id="dispute-body"></div>
+  </div>
+
+  <!-- รายงาน -->
+  <div class="pg" id="pg-report">
+    <div id="report-body"></div>
+  </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
